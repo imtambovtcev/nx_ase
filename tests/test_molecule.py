@@ -44,18 +44,14 @@ def test_molecule_render(benzene):
     assert plotter is not None
 
 
-def test_molecule_save_load(benzene, get_test_file_path):
-    test_file = get_test_file_path('test_benzene.xyz')
-    if os.path.exists(test_file):
-        os.remove(test_file)
+def test_molecule_save_load(benzene, tmpdir):
+    test_file = str(tmpdir.join('test_benzene.xyz'))
 
     benzene.save(test_file)
     loaded = Molecule.load(test_file)
 
     assert loaded.get_chemical_formula() == benzene.get_chemical_formula()
     assert np.allclose(loaded.positions, benzene.positions)
-
-    os.remove(test_file)
 
 
 def test_molecule_rotation(ethylene):
