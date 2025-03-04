@@ -8,7 +8,7 @@ from .molecule import Molecule
 from .motor import Motor
 
 
-class Path:
+class Trajectory:
     def __init__(self, images=None):
         self.images = []
         if images is not None:
@@ -228,7 +228,7 @@ class Path:
             text_file.write(self.to_xyz_string())
 
     def copy(self):
-        return Path([image.copy() for image in self])
+        return Trajectory([image.copy() for image in self])
 
     def to_allxyz_string(self):
         return ">\n".join([image.to_xyz_string() for image in self])
@@ -245,7 +245,7 @@ class Path:
         else:
             raise ValueError(f"Unsupported file format: {filename}")
 
-    def iso_distance(self, other: Path, *args, **kwargs) -> list[float]:
+    def iso_distance(self, other: Trajectory, *args, **kwargs) -> list[float]:
         return [self[i].iso_distance(other[i], *args, **kwargs) for i in range(len(self))]
 
     def __str__(self):
@@ -294,7 +294,7 @@ class Path:
         current_idx = 0
         p = self[current_idx].render()
 
-        if isinstance(other, Path):
+        if isinstance(other, Trajectory):
             other[current_idx].render(p, alpha=alpha)
             print(
                 "Press 'n' to move to the next pair of molecules, 'p' to go back, and 'q' to quit.")

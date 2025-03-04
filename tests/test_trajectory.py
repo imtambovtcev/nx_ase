@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from ase.collections import g2
 
-from nx_ase import Motor, Path
+from nx_ase import Motor, Trajectory
 
 
 @pytest.fixture
@@ -10,7 +10,7 @@ def simple_path():
     m1 = Motor(g2['C6H6'])
     m2 = Motor(g2['C6H6'])
     m2.translate(np.array([1.0, 0.0, 0.0]))  # Move second molecule
-    return Path([m1, m2])
+    return Trajectory([m1, m2])
 
 
 def test_path_creation(simple_path):

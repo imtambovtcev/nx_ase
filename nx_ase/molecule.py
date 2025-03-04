@@ -1206,8 +1206,8 @@ class Molecule(Atoms):
         return (tuple(self.get_positions().flatten()), tuple(self.get_chemical_symbols()))
 
     def linear_interpolation(self, atoms: Atoms, n: int = 1):
-        from .path import Path
-        path = Path([self])
+        from .trajectory import Trajectory
+        path = Trajectory([self])
         for i in range(n):
             new_atmos = self.copy()
             new_atmos.set_positions(self.get_positions(
