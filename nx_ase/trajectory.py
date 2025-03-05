@@ -141,6 +141,10 @@ class Trajectory:
         """Remove an image from the list at the specified index."""
         del self.images[index]
 
+    def pop(self, index=-1):
+        """Remove and return the image at the specified index."""
+        return self.images.pop(index)
+
     def save(self, filename):
         """Save all images in the list to a file."""
         write(filename, self.images)
