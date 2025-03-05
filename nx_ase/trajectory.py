@@ -133,6 +133,10 @@ class Trajectory:
         for image in images:
             self.append(image)
 
+    def insert(self, index, image):
+        """Insert an image at the specified index."""
+        self.images.insert(index, self._convert_type(image))
+
     def remove_image(self, index):
         """Remove an image from the list at the specified index."""
         del self.images[index]
